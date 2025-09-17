@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../views";
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* .footer-overlay {
+    position: relative;
+    background: url('assets-tw/img/footer.jpg') center/cover no-repeat;
+} */
+
+.footer-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(49, 81, 160, 0.926), rgba(49, 81, 160, 0.597));
+}
+
+.footer-content {
+    z-index: 1;
+}
+
+.swiper {
+    width: 100%;
+    height: 600px;
+    position: relative;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.swiper {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.slide-title,
+.slide-subtitle {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* You can adjust the background color and opacity */
+    color: rgb(250 204 21);
+    /* Text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.slide-title {
+    font-size: 48px;
+    /* Adjust the font size as needed */
+    font-weight: bold;
+    /* Optionally, make the title bold */
+}
+
+/* Add overlay style */
+.mySwiper .swiper1-slide::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Adjust overlay color and opacity */
+    z-index: 0;
+    /* Place the overlay behind the content */
+}
+
+.tkpsda-shadow {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tkpsda-sticky-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70rem;
+}
+
+.tkpsda-news-container {
+    padding-left: 100px;
+}
+
+@media (max-width: 640px) {
+    .container {
+        max-width: 100%;
+    }
+
+    .tkpsda-news-container {
+        padding-left: 0px !important;
+    }
+
+    .swiper {
+        width: 100%;
+        height: 300px;
+    }
+
+    .slide-title {
+        font-size: 24px;
+        /* Adjust the font size as needed */
+        font-weight: bold;
+        /* Optionally, make the title bold */
+    }
+
+    .tkpsda-footer {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .tkpsda-mob-menu-profile {
+        transform: translate3d(26px, 179.333px, 0px) !important;
+    }
+
+    .tkpsda-mob-menu-public {
+        transform: translate3d(26px, 220.333px, 0px) !important;
+    }
+
+    .tkpsda-mob-menu-app {
+        transform: translate3d(26px, 261.333px, 0px) !important;
+    }
+
+    .tkpsda-mob-menu-news {
+        transform: translate3d(26px, 302.333px, 0px) !important;
+    }
+
+    .tkpsda-mob-menu-gallery {
+        transform: translate3d(26px, 343.333px, 0px) !important;
+    }
+}
+
+@media (max-width: 1280px) {
+    .container {
+        max-width: 100%;
+    }
+
+    .swiper {
+        width: 100%;
+        height: 400px;
+    }
+
+    .slide-title {
+        font-size: 32px;
+        /* Adjust the font size as needed */
+        font-weight: bold;
+        /* Optionally, make the title bold */
+    }
+}
