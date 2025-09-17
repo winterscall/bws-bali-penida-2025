@@ -1,1 +1,12 @@
 .DS_Store
+
+# Docker environment files
+.env.dev
+.env.prod
+
+# Docker logs
+docker/logs/*
+!docker/logs/.gitkeep
+
+# Docker volumes
+docker-volumes/
