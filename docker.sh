@@ -47,7 +47,7 @@ dev_up() {
         print_warning ".env.dev not found. Copying from example..."
         cp .env.dev.example .env.dev
     fi
-    docker compose -f docker compose.dev.yml up -d
+    docker compose -f docker-compose.dev.yml up -d
     print_status "Development environment started!"
     print_status "Application: http://localhost:8000"
     print_status "Vite Dev Server: http://localhost:5173"
@@ -56,18 +56,18 @@ dev_up() {
 
 dev_down() {
     print_status "Stopping development environment..."
-    docker compose -f docker compose.dev.yml down
+    docker compose -f docker-compose.dev.yml down
     print_status "Development environment stopped!"
 }
 
 dev_logs() {
     print_status "Showing development environment logs..."
-    docker compose -f docker compose.dev.yml logs -f "${2:-}"
+    docker compose -f docker-compose.dev.yml logs -f "${2:-}"
 }
 
 dev_shell() {
     print_status "Opening shell in development container..."
-    docker compose -f docker compose.dev.yml exec app sh
+    docker compose -f docker-compose.dev.yml exec app sh
 }
 
 # Production commands
@@ -87,49 +87,49 @@ prod_up() {
 
 prod_down() {
     print_status "Stopping production environment..."
-    docker compose -f docker compose.prod.yml down
+    docker compose -f docker-compose.prod.yml down
     print_status "Production environment stopped!"
 }
 
 prod_logs() {
     print_status "Showing production environment logs..."
-    docker compose -f docker compose.prod.yml logs -f "${2:-}"
+    docker compose -f docker-compose.prod.yml logs -f "${2:-}"
 }
 
 prod_shell() {
     print_status "Opening shell in production container..."
-    docker compose -f docker compose.prod.yml exec app sh
+    docker compose -f docker-compose.prod.yml exec app sh
 }
 
 # Utility commands
 clean() {
     print_status "Cleaning up Docker resources..."
-    docker compose -f docker compose.dev.yml down -v --remove-orphans 2>/dev/null || true
-    docker compose -f docker compose.prod.yml down -v --remove-orphans 2>/dev/null || true
+    docker compose -f docker-compose.dev.yml down -v --remove-orphans 2>/dev/null || true
+    docker compose -f docker-compose.prod.yml down -v --remove-orphans 2>/dev/null || true
     docker system prune -f
     print_status "Cleanup completed!"
 }
 
 build_dev() {
     print_status "Building development images..."
-    docker compose -f docker compose.dev.yml build --no-cache
+    docker compose -f docker-compose.dev.yml build --no-cache
     print_status "Development images built!"
 }
 
 build_prod() {
     print_status "Building production images..."
-    docker compose -f docker compose.prod.yml build --no-cache
+    docker compose -f docker-compose.prod.yml build --no-cache
     print_status "Production images built!"
 }
 
 # Laravel commands
 artisan() {
-    if docker compose -f docker compose.dev.yml ps | grep -q "Up"; then
+    if docker compose -f docker-compose.dev.yml ps | grep -q "Up"; then
         print_status "Running artisan command in development container..."
-        docker compose -f docker compose.dev.yml exec app php artisan "${@:2}"
-    elif docker compose -f docker compose.prod.yml ps | grep -q "Up"; then
+        docker compose -f docker-compose.dev.yml exec app php artisan "${@:2}"
+    elif docker compose -f docker-compose.prod.yml ps | grep -q "Up"; then
         print_status "Running artisan command in production container..."
-        docker compose -f docker compose.prod.yml exec app php artisan "${@:2}"
+        docker compose -f docker-compose.prod.yml exec app php artisan "${@:2}"
     else
         print_error "No running containers found. Please start development or production environment first."
         exit 1
@@ -137,9 +137,9 @@ artisan() {
 }
 
 composer() {
-    if docker compose -f docker compose.dev.yml ps | grep -q "Up"; then
+    if docker compose -f docker-compose.dev.yml ps | grep -q "Up"; then
         print_status "Running composer command in development container..."
-        docker compose -f docker compose.dev.yml exec app composer "${@:2}"
+        docker compose -f docker-compose.dev.yml exec app composer "${@:2}"
     else
         print_error "Development container is not running. Please start development environment first."
         exit 1
@@ -147,9 +147,9 @@ composer() {
 }
 
 npm() {
-    if docker compose -f docker compose.dev.yml ps | grep -q "Up"; then
+    if docker compose -f docker-compose.dev.yml ps | grep -q "Up"; then
         print_status "Running npm command in development container..."
-        docker compose -f docker compose.dev.yml exec app npm "${@:2}"
+        docker compose -f docker-compose.dev.yml exec app npm "${@:2}"
     else
         print_error "Development container is not running. Please start development environment first."
         exit 1
