@@ -3,8 +3,13 @@ set -e
 
 echo "Starting BWS Bali Penida Development Environment..."
 
-# Wait for any dependencies
-sleep 2
+# Wait for MySQL to be ready
+echo "Waiting for MySQL to be ready..."
+while ! mysql -h"${DB_HOST:-mysql}" -P"${DB_PORT:-3306}" -u"${DB_USERNAME:-laravel}" -p"${DB_PASSWORD:-password}" -e "SELECT 1" >/dev/null 2>&1; do
+    echo "MySQL is not ready yet, waiting..."
+    sleep 2
+done
+echo "MySQL is ready!"
 
 cd /var/www/html
 
@@ -22,12 +27,9 @@ if [ ! -f ".env" ]; then
     php artisan key:generate
 fi
 
-# Create database if it doesn't exist
-if [ ! -f "database/database.sqlite" ]; then
-    echo "Creating database..."
-    touch database/database.sqlite
-    php artisan migrate --force
-fi
+# Run database migrations
+echo "Running database migrations..."
+php artisan migrate --force
 
 # Clear caches for development
 php artisan config:clear

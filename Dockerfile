@@ -15,6 +15,8 @@ RUN apk add --no-cache \
     unzip \
     sqlite \
     sqlite-dev \
+    mysql-client \
+    mysql-dev \
     freetype-dev \
     libjpeg-turbo-dev \
     libwebp-dev \
@@ -23,7 +25,7 @@ RUN apk add --no-cache \
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install pdo pdo_sqlite mbstring exif pcntl bcmath gd opcache
+    && docker-php-ext-install pdo pdo_sqlite pdo_mysql mysqli mbstring exif pcntl bcmath gd opcache
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

@@ -46,6 +46,7 @@ This repository contains a Docker setup for both development and production envi
    - Vite Dev Server: http://localhost:5173
    - MailHog Web Interface: http://localhost:8025
    - Redis: localhost:6380
+   - MySQL: localhost:3306 (username: `laravel`, password: `password`)
 
 ### Production Environment
 
@@ -68,6 +69,7 @@ This repository contains a Docker setup for both development and production envi
 3. **Access the application:**
    - Application: http://localhost (port 80)
    - Redis: localhost:6379
+   - MySQL: Connect using environment variables from .env.prod
 
 ## Environment Configuration
 
@@ -144,13 +146,31 @@ docker-compose -f docker-compose.prod.yml down
 
 ## Database
 
-The application uses SQLite by default, which is suitable for small to medium applications. The database file is located at `src/database/database.sqlite`.
+The application uses MySQL as the default database for both development and production environments. 
 
-For production with higher load, consider switching to PostgreSQL or MySQL by:
+### Development Environment
+- **Service:** MySQL 8.0 container
+- **Database:** `bws_bali_penida`
+- **Username:** `laravel`
+- **Password:** `password`
+- **Host:** `mysql` (Docker service name)
+- **Port:** `3306`
 
-1. Adding the database service to docker-compose files
-2. Updating the DB_* environment variables
-3. Installing appropriate PHP extensions in Dockerfiles
+### Production Environment
+- **Service:** MySQL 8.0 container  
+- **Database:** Configurable via `DB_DATABASE` environment variable (default: `bws_bali_penida`)
+- **Username:** Configurable via `DB_USERNAME` environment variable (default: `laravel`)
+- **Password:** Must be set via `DB_PASSWORD` environment variable
+- **Root Password:** Must be set via `DB_ROOT_PASSWORD` environment variable
+- **Host:** `mysql` (Docker service name)
+- **Port:** `3306`
+
+### Database Persistence
+Database data is persisted using Docker volumes:
+- **Development:** `mysql_data` volume
+- **Production:** `mysql_data` volume
+
+The application will automatically wait for MySQL to be ready and run database migrations on startup.
 
 ## Storage and Uploads
 
