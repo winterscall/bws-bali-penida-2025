@@ -3,20 +3,19 @@ set -e
 
 echo "Starting BWS Bali Penida Production Environment..."
 
-# Wait for database to be ready (if using external DB)
-# sleep 5
+# Wait for MySQL to be ready
+echo "Waiting for MySQL to be ready..."
+while ! mysql -h"${DB_HOST:-mysql}" -P"${DB_PORT:-3306}" -u"${DB_USERNAME:-laravel}" -p"${DB_PASSWORD}" -e "SELECT 1" >/dev/null 2>&1; do
+    echo "MySQL is not ready yet, waiting..."
+    sleep 2
+done
+echo "MySQL is ready!"
 
 # Run Laravel setup commands
 cd /var/www/html
 
 # Ensure proper permissions
 chown -R www:www /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Create database file if it doesn't exist
-if [ ! -f database/database.sqlite ]; then
-    touch database/database.sqlite
-    chown www:www database/database.sqlite
-fi
 
 # Run migrations and optimize
 php artisan config:cache
