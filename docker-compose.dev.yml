@@ -1,0 +1,56 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: bws-bali-penida-dev
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+      - "5173:5173"  # Vite dev server
+    volumes:
+      - ./src:/var/www/html
+      - composer_cache:/tmp/composer-cache
+      - node_modules:/var/www/html/node_modules
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=${APP_KEY:-}
+      - APP_URL=http://localhost:8000
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=/var/www/html/database/database.sqlite
+      - VITE_DEV_SERVER_KEY=
+      - VITE_DEV_SERVER_CERT=
+    depends_on:
+      - redis
+      - mailhog
+    networks:
+      - bws-network
+    command: /usr/local/bin/entrypoint-dev.sh
+
+  redis:
+    image: redis:7-alpine
+    container_name: bws-bali-penida-redis-dev
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    networks:
+      - bws-network
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: bws-bali-penida-mailhog
+    restart: unless-stopped
+    ports:
+      - "1025:1025"  # SMTP
+      - "8025:8025"  # Web interface
+    networks:
+      - bws-network
+
+volumes:
+  composer_cache:
+  node_modules:
+
+networks:
+  bws-network:
+    driver: bridge
