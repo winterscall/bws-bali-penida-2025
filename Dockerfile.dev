@@ -15,8 +15,8 @@ RUN apk add --no-cache \
     unzip \
     sqlite \
     sqlite-dev \
-    mysql-client \
-    mysql-dev \
+    mariadb-client \
+    mariadb-dev \
     freetype-dev \
     libjpeg-turbo-dev \
     libwebp-dev \
