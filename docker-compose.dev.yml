@@ -10,6 +10,9 @@ services:
       - "5173:5173"  # Vite dev server
     volumes:
       - ./src:/var/www/html
+      - ./src/storage/app:/var/www/html/storage/app
+      - ./src/storage/app/public:/var/www/html/storage/app/public
+      - ./src/storage/logs:/var/www/html/storage/logs
       - composer_cache:/tmp/composer-cache
       - node_modules:/var/www/html/node_modules
     environment:
