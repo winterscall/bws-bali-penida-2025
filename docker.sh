@@ -74,13 +74,13 @@ dev_shell() {
 prod_up() {
     print_status "Starting production environment..."
     check_docker
-    if [ ! -f ".env.prod" ]; then
+    if [ ! -f ".env" ]; then
         print_warning ".env.prod not found. Copying from example..."
-        cp .env.prod.example .env.prod
-        print_error "Please configure .env.prod with your production settings before running again!"
+        cp .env.prod.example .env
+        print_error "Please configure .env with your production settings before running again!"
         exit 1
     fi
-    docker compose -f docker compose.prod.yml up -d --build
+    docker compose -f docker-compose.prod.yml up -d --build
     print_status "Production environment started!"
     print_status "Application: http://localhost"
 }
@@ -106,7 +106,7 @@ clean() {
     print_status "Cleaning up Docker resources..."
     docker compose -f docker-compose.dev.yml down -v --remove-orphans 2>/dev/null || true
     docker compose -f docker-compose.prod.yml down -v --remove-orphans 2>/dev/null || true
-    docker system prune -f
+    # docker system prune -f
     print_status "Cleanup completed!"
 }
 

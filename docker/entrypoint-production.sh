@@ -5,7 +5,7 @@ echo "Starting BWS Bali Penida Production Environment..."
 
 # Wait for MySQL to be ready
 echo "Waiting for MySQL to be ready..."
-while ! mysql -h"${DB_HOST:-mysql}" -P"${DB_PORT:-3306}" -u"${DB_USERNAME:-laravel}" -p"${DB_PASSWORD}" -e "SELECT 1" >/dev/null 2>&1; do
+while ! /usr/bin/mariadb --ssl=0 -h "${DB_HOST:-mysql}" -P "${DB_PORT:-3306}" -u "${DB_USERNAME:-laravel}" -p"${DB_PASSWORD}" -e "SELECT 1" >/dev/null 2>&1; do
     echo "MySQL is not ready yet, waiting..."
     sleep 2
 done
@@ -18,9 +18,7 @@ cd /var/www/html
 chown -R www:www /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Run migrations and optimize
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+php artisan optimize
 php artisan migrate --force
 
 # Start supervisor to manage all services

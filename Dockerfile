@@ -58,7 +58,9 @@ COPY ./docker/supervisor/production.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./docker/php/production.ini /usr/local/etc/php/conf.d/production.ini
 
 # Create required directories
-RUN mkdir -p /var/log/supervisor /run/nginx
+RUN mkdir -p /var/log/supervisor /run/nginx \
+    && chown -R www:www /var/log/supervisor \
+    && chmod -R 755 /var/log/supervisor
 
 # Set environment to production
 ENV APP_ENV=production
