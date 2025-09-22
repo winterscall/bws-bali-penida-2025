@@ -27,7 +27,10 @@ chmod 755 /var/log/nginx /var/lib/nginx /var/cache/nginx /run/nginx
 echo "Running Laravel optimizations and migrations..."
 php artisan optimize
 php artisan migrate --force
-php artisan storage:link
+
+# Create storage symbolic link
+echo "Creating storage symbolic link..."
+php artisan storage:link --force
 
 echo "All services ready, starting supervisord..."
 # Start supervisor to manage all services
