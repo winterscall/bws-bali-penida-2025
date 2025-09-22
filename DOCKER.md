@@ -30,7 +30,7 @@ This repository contains a Docker setup for both development and production envi
    cd bws-bali-penida-2025
    
    # Copy development environment file
-   cp .env.dev.example .env.dev
+   cp .env.dev.example .env
    
    # Generate application key
    docker-compose -f docker-compose.dev.yml run --rm app php artisan key:generate
@@ -53,10 +53,10 @@ This repository contains a Docker setup for both development and production envi
 1. **Setup production environment:**
    ```bash
    # Copy production environment file
-   cp .env.prod.example .env.prod
+   cp .env.prod.example .env
    
    # Edit .env.prod with your production values
-   nano .env.prod
+   nano .env
    
    # Set your APP_KEY (generate one with: php artisan key:generate --show)
    ```
@@ -69,7 +69,7 @@ This repository contains a Docker setup for both development and production envi
 3. **Access the application:**
    - Application: http://localhost (port 80)
    - Redis: localhost:6379
-   - MySQL: Connect using environment variables from .env.prod
+   - MySQL: Connect using environment variables from .env
 
 ## Environment Configuration
 
