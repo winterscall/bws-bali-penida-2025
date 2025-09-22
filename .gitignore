@@ -1,6 +1,7 @@
 .DS_Store
 
-# Docker environment files
+# Docker environment file
+.env
 .env.dev
 .env.prod
 
