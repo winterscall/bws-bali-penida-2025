@@ -21,7 +21,9 @@ RUN apk add --no-cache \
     libjpeg-turbo-dev \
     libwebp-dev \
     nginx \
-    supervisor
+    supervisor \
+    nodejs \
+    npm
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
@@ -44,6 +46,10 @@ RUN chown -R www:www /var/www/html \
 
 # Install Composer dependencies
 RUN composer install --optimize-autoloader --no-dev --no-interaction
+
+# install frontend dependencies
+RUN npm install
+RUN npm run build
 
 # Production stage
 FROM base AS production
@@ -77,7 +83,7 @@ EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD curl -f http://localhost || exit 1
 
-# Use non-root user
-USER www
+# Run as root for services that need it, entrypoint will handle permissions
+# USER www
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

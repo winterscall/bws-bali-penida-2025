@@ -15,11 +15,20 @@ echo "MySQL is ready!"
 cd /var/www/html
 
 # Ensure proper permissions
+echo "Setting up correct permissions..."
 chown -R www:www /var/www/html/storage /var/www/html/bootstrap/cache
+chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Ensure nginx can write to its required directories
+mkdir -p /var/log/nginx /var/lib/nginx /var/cache/nginx /run/nginx
+chmod 755 /var/log/nginx /var/lib/nginx /var/cache/nginx /run/nginx
 
 # Run migrations and optimize
+echo "Running Laravel optimizations and migrations..."
 php artisan optimize
 php artisan migrate --force
+php artisan storage:link
 
+echo "All services ready, starting supervisord..."
 # Start supervisor to manage all services
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
