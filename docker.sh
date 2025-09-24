@@ -43,9 +43,9 @@ check_docker() {
 dev_up() {
     print_status "Starting development environment..."
     check_docker
-    if [ ! -f ".env.dev" ]; then
-        print_warning ".env.dev not found. Copying from example..."
-        cp .env.dev.example .env.dev
+    if [ ! -f ".env" ]; then
+        print_warning ".env not found. Copying from example..."
+        cp .env.dev.example .env
     fi
     docker compose -f docker-compose.dev.yml up -d
     print_status "Development environment started!"
