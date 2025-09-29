@@ -15,7 +15,7 @@ class DigitalMedia extends Model
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
-                return $attributes['cover_path'] ? Storage::url($attributes['cover_path']) : null;
+                return $attributes['cover_path'] ? Storage::disk('public')->url($attributes['cover_path']) : null;
             },
         );
     }
@@ -25,13 +25,13 @@ class DigitalMedia extends Model
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
                 if($attributes['type'] === 'attachment') {
-                    return Storage::url($attributes['attachment_path']);
+                    return Storage::disk('public')->url($attributes['attachment_path']);
                 }
                 else if($attributes['type'] === 'url') {
                     return $attributes['media_url'];
                 }
                 else {
-                    return Storage::url($attributes['cover_path']);
+                    return Storage::disk('public')->url($attributes['cover_path']);
                 }
             },
         );

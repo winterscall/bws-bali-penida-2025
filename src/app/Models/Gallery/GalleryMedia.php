@@ -20,7 +20,7 @@ class GalleryMedia extends Model
                 }
 
                 $path_explode = explode('img', $attributes['path']);
-                return $attributes['path'] ? Storage::url($path_explode[0].'thumb-img'.$path_explode[1]) : null;
+                return $attributes['path'] ? Storage::disk('public')->url($path_explode[0].'thumb-img'.$path_explode[1]) : null;
             },
         );
     }
@@ -32,7 +32,7 @@ class GalleryMedia extends Model
                 if($attributes['type'] == 'video'){
                     return $attributes['path'] ?? null;
                 }
-                return $attributes['path'] ? Storage::url($attributes['path']) : null;
+                return $attributes['path'] ? Storage::disk('public')->url($attributes['path']) : null;
             },
         );
     }

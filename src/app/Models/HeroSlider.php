@@ -15,7 +15,7 @@ class HeroSlider extends Model
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
-                return $attributes['path'] ? Storage::url($attributes['path']) : null;
+                return $attributes['path'] ? Storage::disk('public')->url($attributes['path']) : null;
             },
         );
     }
