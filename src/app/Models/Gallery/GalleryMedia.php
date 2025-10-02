@@ -19,8 +19,18 @@ class GalleryMedia extends Model
                     return 'https://img.youtube.com/vi/'.explode('v=', $attributes['path'])[1].'/hqdefault.jpg';
                 }
 
-                $path_explode = explode('img', $attributes['path']);
-                return $attributes['path'] ? Storage::disk('public')->url($path_explode[0].'thumb-img'.$path_explode[1]) : null;
+                if ($attributes['path']) {
+                    $pathInfo = pathinfo($attributes['path']);
+                    $thumbnailPath = 'gallery/thumbs/thumb-' . $pathInfo['basename'];
+                    
+                    // Check if thumbnail exists, otherwise use original
+                    if (Storage::disk('public')->exists($thumbnailPath)) {
+                        return asset('storage/' . $thumbnailPath);
+                    }
+                    return asset('storage/' . $attributes['path']);
+                }
+                
+                return null;
             },
         );
     }
@@ -32,7 +42,7 @@ class GalleryMedia extends Model
                 if($attributes['type'] == 'video'){
                     return $attributes['path'] ?? null;
                 }
-                return $attributes['path'] ? Storage::disk('public')->url($attributes['path']) : null;
+                return $attributes['path'] ? asset('storage/' . $attributes['path']) : null;
             },
         );
     }
