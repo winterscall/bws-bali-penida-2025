@@ -23,9 +23,15 @@ chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 mkdir -p /var/log/nginx /var/lib/nginx /var/cache/nginx /run/nginx
 chmod 755 /var/log/nginx /var/lib/nginx /var/cache/nginx /run/nginx
 
+# Clear bootstrap cache first
+echo "Clearing bootstrap cache..."
+rm -rf /var/www/html/bootstrap/cache/*.php
+
 # Run migrations and optimize
 echo "Running Laravel optimizations and migrations..."
-php artisan optimize
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 php artisan migrate --force
 
 # Create storage symbolic link
