@@ -42,7 +42,5 @@ RUN chmod +x /usr/local/bin/entrypoint-dev.sh
 # Expose ports
 EXPOSE 8000 5173
 
-# Use non-root user
-USER www
-
+# Start as root, entrypoint will handle user switching
 ENTRYPOINT ["/usr/local/bin/entrypoint-dev.sh"]

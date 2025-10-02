@@ -13,35 +13,46 @@ echo "MySQL is ready!"
 
 cd /var/www/html
 
+# Fix permissions (running as root initially)
+echo "Setting up proper permissions..."
+# Create directories if they don't exist
+mkdir -p /var/www/html/node_modules
+mkdir -p /var/www/html/storage/logs
+mkdir -p /var/www/html/storage/app/public
+
+# Set proper ownership for the www user
+chown -R www:www /var/www/html/node_modules
+chown -R www:www /var/www/html/storage
+chown -R www:www /var/www/html/bootstrap/cache || true
+
 # Install dependencies if not present
-if [ ! -d "vendor" ] || [ ! -d "node_modules" ]; then
+if [ ! -d "vendor" ] || [ ! -d "node_modules/.bin" ]; then
     echo "Installing dependencies..."
-    composer install --no-interaction --optimize-autoloader
-    npm install
+    su www -s /bin/bash -c "composer install --no-interaction --optimize-autoloader"
+    su www -s /bin/bash -c "npm install"
 fi
 
 # Set up Laravel if needed
-if [ ! -f ".env" ]; then
-    echo "Setting up Laravel environment..."
-    cp .env.example .env
-    php artisan key:generate
-fi
+# if [ ! -f ".env" ]; then
+#     echo "Setting up Laravel environment..."
+#     cp .env.example .env
+#     php artisan key:generate
+# fi
 
-# Run database migrations
+# Run database migrations as www user
 echo "Running database migrations..."
-php artisan migrate --force
+su www -s /bin/bash -c "php artisan migrate --force"
 
 # Clear caches for development
-php artisan optimize:clear
-
+su www -s /bin/bash -c "php artisan optimize:clear"
 echo "Environment setup complete!"
 
-# Start development services in background
+# Start development services in background as www user
 echo "Starting Laravel development server..."
-php artisan serve --host=0.0.0.0 --port=8000 &
+su www -s /bin/bash -c "php artisan serve --host=0.0.0.0 --port=8000" &
 
 echo "Starting Vite development server..."
-npm run dev -- --host=0.0.0.0 --port=5173 &
+su www -s /bin/bash -c "npm run dev -- --host=0.0.0.0 --port=5173" &
 
 # Keep the container running
 wait
