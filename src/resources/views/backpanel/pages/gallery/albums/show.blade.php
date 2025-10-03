@@ -164,12 +164,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('backpanel.albums.photos.upload', ['album' => $album]) }}" class="dropzone">
+          <form id="photoDropzone" action="{{ route('backpanel.albums.photos.upload', ['album' => $album]) }}" class="dropzone">
+            @csrf
             <div class="dz-message">
-              klik disini atau drop file untuk mengunggah.
-            </div>
-            <div class="fallback">
-              <input name="file" type="file" />
+              <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-primary"></i><br>
+              <span class="fw-bold">Klik disini atau drop file untuk mengunggah foto</span><br>
+              <small class="text-muted">Maksimal 10MB per file, format: JPG, PNG, GIF</small>
             </div>
           </form>
         </div>
@@ -182,6 +182,9 @@
 @endsection
 
 @push('css')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
+    integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     .photo-card {
       transition: all 0.3s ease;
@@ -209,10 +212,66 @@
     .photo-card:hover .photo-card-overlay {
       opacity: 1;
     }
+
+    /* Enhanced Dropzone Styling */
+    .dropzone {
+      border: 2px dashed #696cff !important;
+      border-radius: 10px !important;
+      background: #f8f9fc !important;
+      min-height: 200px !important;
+      padding: 30px !important;
+      text-align: center !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .dropzone:hover {
+      border-color: #5a5fef !important;
+      background: #f0f1ff !important;
+    }
+
+    .dropzone .dz-message {
+      font-size: 16px !important;
+      color: #6c757d !important;
+      margin: 0 !important;
+    }
+
+    .dropzone .dz-preview {
+      display: inline-block !important;
+      margin: 10px !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    }
+
+    .dropzone .dz-preview .dz-image {
+      width: 120px !important;
+      height: 120px !important;
+      border-radius: 8px !important;
+    }
+
+    .dropzone .dz-preview .dz-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    .dropzone .dz-progress {
+      height: 4px !important;
+      background: #e9ecef !important;
+      border-radius: 2px !important;
+      overflow: hidden !important;
+    }
+
+    .dropzone .dz-progress .dz-upload {
+      background: #696cff !important;
+      border-radius: 2px !important;
+    }
+
+    .dropzone .dz-success-mark,
+    .dropzone .dz-error-mark {
+      display: none !important;
+    }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
-    integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 
 @push('js')
@@ -220,14 +279,38 @@
     integrity="sha512-U2WE1ktpMTuRBPoCFDzomoIorbOyUv0sP8B+INA3EzNAhehbzED1rOJg6bCqPf/Tuposxb5ja/MAUnC8THSbLQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
-    Dropzone.options.myDropzone = {
-      // Configuration options go here
-      parallelUploads: 5,
-      maxFilesize: 10,
-      addRemoveLinks: false,
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
-      }
-    };
+    Dropzone.autoDiscover = false;
+    
+    $(document).ready(function() {
+      var photoDropzone = new Dropzone("#photoDropzone", {
+        paramName: "file",
+        maxFilesize: 10, // MB
+        acceptedFiles: "image/*",
+        parallelUploads: 5,
+        // maxFiles: 20,
+        addRemoveLinks: false,
+        dictDefaultMessage: 'Klik atau drop file untuk upload',
+        dictRemoveFile: 'Hapus',
+        dictCancelUpload: 'Batal',
+        dictUploadCanceled: 'Upload dibatalkan',
+        dictInvalidFileType: 'File harus berupa gambar',
+        dictFileTooBig: 'File terlalu besar (maksimal 10MB)',
+        dictMaxFilesExceeded: 'Maksimal 20 file',
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+        },
+        init: function() {
+          var myDropzone = this;
+          
+          this.on("success", function(file, response) {
+            console.log('Upload berhasil:', response);
+          });
+          
+          this.on("error", function(file, message) {
+            console.error('Upload error:', message);
+          });
+        }
+      });
+    });
   </script>
 @endpush
