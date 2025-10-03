@@ -65,7 +65,11 @@
                       <p class="card-text small text-muted">{{ Str::limit($media->description, 60) }}</p>
                     </div> --}}
                     <div class="photo-card-overlay">
+                      <p id="linkToCopy" style="display: none;">{{ $media->path_url }}</p>
                       <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-sm btn-success" id="copyButton">
+                          <i class="fas fa-copy"></i>
+                        </button>
                         <a href="{{ $media->path_url }}" class="btn btn-sm btn-warning" target="_blank">
                           <i class="fas fa-eye"></i>
                         </a>
@@ -100,9 +104,9 @@
           <div class="card-header header-elements">
             <h5 class="mb-0 me-2">Video</h5>
             <div class="d-flex gap-1 ms-auto">
-              {{-- @can('create', ['App\Models\Gallery\GalleryMedia', $album])
-                <a href="{{ route('backpanel.albums.medias.create', ['album' => $album, 'type' => 'video']) }}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Tambah Video</a>
-              @endcan --}}
+              @can('create', ['App\Models\Gallery\GalleryMedia', $album])
+                <a href="{{ route('backpanel.albums.videos.create', ['album' => $album]) }}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Tambah Video</a>
+              @endcan
             </div>
           </div>
           <div class="card-body">
@@ -121,15 +125,15 @@
                           <i class="fas fa-eye"></i>
                         </a>
                         @can('update', $media)
-                          <a href="{{ route('backpanel.albums.medias.edit', ['album' => $album, 'media' => $media]) }}"
+                          <a href="{{ route('backpanel.albums.videos.edit', ['album' => $album, 'video' => $media]) }}"
                             class="btn btn-sm btn-info">
                             <i class="fas fa-edit"></i>
                           </a>
                         @endcan
                         @can('delete', $media)
                           <form
-                            action="{{ route('backpanel.albums.medias.destroy', ['album' => $album, 'media' => $media]) }}"
-                            method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus foto ini?');">
+                            action="{{ route('backpanel.albums.videos.destroy', ['album' => $album, 'video' => $media]) }}"
+                            method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus video ini?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">
@@ -311,6 +315,18 @@
           });
         }
       });
+    });
+
+    document.getElementById('copyButton').addEventListener('click', function() {
+      const linkText = document.getElementById('linkToCopy').innerText;
+      navigator.clipboard.writeText(linkText)
+        .then(() => {
+          alert('Link copied to clipboard!');
+        })
+        .catch(err => {
+          console.error('Failed to copy link: ', err);
+          alert('Failed to copy link. Please try again or copy manually.');
+        });
     });
   </script>
 @endpush

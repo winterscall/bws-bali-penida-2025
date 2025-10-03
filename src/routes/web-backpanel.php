@@ -4,8 +4,8 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Backpanel\BacklinkController;
 use App\Http\Controllers\Backpanel\DashboardController;
 use App\Http\Controllers\Backpanel\Gallery\AlbumController;
-use App\Http\Controllers\Backpanel\Gallery\MediaController;
 use App\Http\Controllers\Backpanel\Gallery\PhotoController;
+use App\Http\Controllers\Backpanel\Gallery\VideoController;
 use App\Http\Controllers\Backpanel\SiteMenuController;
 use App\Http\Controllers\Backpanel\HeroSliderController;
 use App\Http\Controllers\Backpanel\Media\DigitalMediaController;
@@ -62,6 +62,9 @@ Route::middleware(['auth'])->group(function () {
         // photo route
         Route::post('/albums/{album}/photos/upload', [PhotoController::class, 'upload'])->name('albums.photos.upload');
         Route::delete('/albums/{album}/photos/{photo}', [PhotoController::class, 'destroy'])->name('albums.photos.destroy');
+
+        // video route
+        Route::resource('albums.videos', VideoController::class)->except(['index', 'show']);
 
         Route::get('/albums/{album}/publish', [AlbumController::class, 'publish'])->name('albums.publish');
         Route::put('/albums/{album}/update_publish', [AlbumController::class, 'update_publish'])->name('albums.update_publish');
