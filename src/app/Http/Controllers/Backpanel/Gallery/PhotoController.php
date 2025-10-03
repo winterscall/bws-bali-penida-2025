@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Gallery\GalleryAlbum;
 use App\Models\Gallery\GalleryMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -19,8 +20,7 @@ class PhotoController extends Controller
     public function upload(Request $request, GalleryAlbum $album)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'type' => 'required|in:photo,video',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
         ]);
 
         try {
@@ -64,19 +64,21 @@ class PhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GalleryAlbum $album, GalleryMedia $media)
+    public function destroy(GalleryAlbum $album, GalleryMedia $photo)
     {
         // Delete files from storage
-        if ($media->type === 'photo' && $media->path) {
-            Storage::disk('public')->delete($media->path);
-            
+        if ($photo->type === 'photo' && $photo->path) {
+            Storage::disk('public')->delete($photo->path);
+
             // Delete thumbnail
-            $pathInfo = pathinfo($media->path);
+            $pathInfo = pathinfo($photo->path);
+            Log::info('Deleting thumbnail at: ' . json_encode($pathInfo));
             $thumbnailPath = $pathInfo['dirname'] . '/' . str_replace('images', 'thumbs', $pathInfo['dirname']) . '/thumb-' . $pathInfo['basename'];
+            Log::info('Deleting thumbnail at: ' . $thumbnailPath);  
             Storage::disk('public')->delete($thumbnailPath);
         }
 
-        $media->delete();
+        $photo->delete();
 
         SessionHelper::common_flasher('delete', 'Media');
         return redirect()->route('backpanel.albums.show', $album);
