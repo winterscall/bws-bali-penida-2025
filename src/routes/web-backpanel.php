@@ -58,6 +58,9 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::resource('albums', AlbumController::class);
+        Route::get('/albums/{album}/publish', [AlbumController::class, 'publish'])->name('albums.publish');
+        Route::put('/albums/{album}/update_publish', [AlbumController::class, 'update_publish'])->name('albums.update_publish');
+        Route::get('/albums/{album}/unpublish', [AlbumController::class, 'unpublish'])->name('albums.unpublish');
         
         // photo route
         Route::post('/albums/{album}/photos/upload', [PhotoController::class, 'upload'])->name('albums.photos.upload');
@@ -65,10 +68,6 @@ Route::middleware(['auth'])->group(function () {
 
         // video route
         Route::resource('albums.videos', VideoController::class)->except(['index', 'show']);
-
-        Route::get('/albums/{album}/publish', [AlbumController::class, 'publish'])->name('albums.publish');
-        Route::put('/albums/{album}/update_publish', [AlbumController::class, 'update_publish'])->name('albums.update_publish');
-        Route::get('/albums/{album}/unpublish', [AlbumController::class, 'unpublish'])->name('albums.unpublish');
     });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
