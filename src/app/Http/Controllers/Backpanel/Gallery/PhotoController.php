@@ -72,9 +72,7 @@ class PhotoController extends Controller
 
             // Delete thumbnail
             $pathInfo = pathinfo($photo->path);
-            Log::info('Deleting thumbnail at: ' . json_encode($pathInfo));
-            $thumbnailPath = $pathInfo['dirname'] . '/' . str_replace('images', 'thumbs', $pathInfo['dirname']) . '/thumb-' . $pathInfo['basename'];
-            Log::info('Deleting thumbnail at: ' . $thumbnailPath);  
+            $thumbnailPath = str_replace('images', 'thumbs', $pathInfo['dirname']) . '/thumb-' . $pathInfo['basename'];
             Storage::disk('public')->delete($thumbnailPath);
         }
 
