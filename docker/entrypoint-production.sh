@@ -21,7 +21,10 @@ chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Ensure nginx can write to its required directories
 mkdir -p /var/log/nginx /var/lib/nginx /var/cache/nginx /run/nginx
+mkdir -p /var/lib/nginx/tmp/client_body /var/lib/nginx/tmp/proxy /var/lib/nginx/tmp/fastcgi /var/lib/nginx/tmp/uwsgi /var/lib/nginx/tmp/scgi
 chmod 755 /var/log/nginx /var/lib/nginx /var/cache/nginx /run/nginx
+chown -R www:www /var/log/nginx /var/lib/nginx /var/cache/nginx /run/nginx
+chmod -R 755 /var/lib/nginx/tmp
 
 # Clear bootstrap cache first
 echo "Clearing bootstrap cache..."

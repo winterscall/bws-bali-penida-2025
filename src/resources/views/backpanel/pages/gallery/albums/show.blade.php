@@ -65,9 +65,8 @@
                       <p class="card-text small text-muted">{{ Str::limit($media->description, 60) }}</p>
                     </div> --}}
                     <div class="photo-card-overlay">
-                      <p id="linkToCopy" style="display: none;">{{ $media->path_url }}</p>
                       <div class="d-flex gap-2 justify-content-center">
-                        <button class="btn btn-sm btn-success" id="copyButton">
+                        <button class="btn btn-sm btn-success" id="copyButton-{{ $media->id }}" onclick="copyToClipboard('{{ $media->path_url }}', 'copyButton-{{ $media->id }}')">
                           <i class="fas fa-copy"></i>
                         </button>
                         <a href="{{ $media->path_url }}" class="btn btn-sm btn-warning" target="_blank">
@@ -317,16 +316,41 @@
       });
     });
 
-    document.getElementById('copyButton').addEventListener('click', function() {
-      const linkText = document.getElementById('linkToCopy').innerText;
-      navigator.clipboard.writeText(linkText)
+    // Copy to clipboard function
+    function copyToClipboard(text, buttonId) {
+      navigator.clipboard.writeText(text)
         .then(() => {
-          alert('Link copied to clipboard!');
+          // Change button icon to checkmark temporarily
+          const button = document.getElementById(buttonId);
+          const icon = button.querySelector('i');
+          const originalClass = icon.className;
+          
+          icon.className = 'fas fa-check';
+          button.classList.remove('btn-success');
+          button.classList.add('btn-info');
+          
+          // Reset after 2 seconds
+          setTimeout(() => {
+            icon.className = originalClass;
+            button.classList.remove('btn-info');
+            button.classList.add('btn-success');
+          }, 2000);
+          
+          // Show toast notification if available
+          if (typeof toastr !== 'undefined') {
+            toastr.success('Link berhasil disalin ke clipboard!');
+          } else {
+            alert('Link berhasil disalin ke clipboard!');
+          }
         })
         .catch(err => {
           console.error('Failed to copy link: ', err);
-          alert('Failed to copy link. Please try again or copy manually.');
+          if (typeof toastr !== 'undefined') {
+            toastr.error('Gagal menyalin link. Silakan coba lagi.');
+          } else {
+            alert('Gagal menyalin link. Silakan coba lagi.');
+          }
         });
-    });
+    }
   </script>
 @endpush
