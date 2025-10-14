@@ -54,6 +54,7 @@ class PhotoController extends Controller
             ]);
 
         } catch (\Exception $e) {
+            Log::error('Photo upload failed: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Upload failed: ' . $e->getMessage()
