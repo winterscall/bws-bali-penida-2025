@@ -8,7 +8,7 @@
   <div class="mx-auto max-w-7xl px-6 lg:px-8 relative">
     <div class="mx-auto lg:mx-0">
       <h2 class="text-4xl font-bold tracking-tight text-white sm:text-3xl relative z-20">Foto Kegiatan {{ $album->name }}</h2>
-      <p class="text-gray-200 text-2xl relative z-20 mt-2">Kumpulan foto kegiatan BWS Bali-Penida</p>
+      <p class="text-gray-200 text-2xl relative z-20 mt-2">Kumpulan foto kegiatan BWS Bali Penida</p>
     </div>
   </div>
 </div>

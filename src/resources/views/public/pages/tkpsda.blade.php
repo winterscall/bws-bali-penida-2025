@@ -27,12 +27,12 @@
 
         <div class="py-10 lg:col-span-2 lg:col-start-1 lg:pb-16 lg:pr-8 lg:pt-6">
           <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pembahasan rancangan pola dan rancangan rencana pengelolaan sumber daya air pada Wilayah Sungai Bali-Penida guna perumusan bahan pertimbangan untuk penetapan pola dan rencana pengelolaan sumber daya air</span></li>
-            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pembahasan rancangan program dan rancangan rencana kegiatan pengelolaan sumber daya air pada Wilayah Sungai Bali-Penida guna perumusan bahan pertimbangan untuk penetapan program dan rencana kegiatan sumber daya air</span></li>
-            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pembahasan usulan rencana alokasi air dari setiap sumber air pada Wilayah Sungai Bali-Penida guna perumusan bahan pertimbangan untuk penetapan rencana alokasi air</span></li>
-            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pembahasan rencana pengelolaan sistem informasi hidrologi, hidrometeorologi, dan hidrogeologi pada Wilayah Sungai Bali-Penida untuk mencapai keterpaduan pengelolaan sistem informasi</span></li>
+            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pembahasan rancangan pola dan rancangan rencana pengelolaan sumber daya air pada Wilayah Sungai Bali Penida guna perumusan bahan pertimbangan untuk penetapan pola dan rencana pengelolaan sumber daya air</span></li>
+            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pembahasan rancangan program dan rancangan rencana kegiatan pengelolaan sumber daya air pada Wilayah Sungai Bali Penida guna perumusan bahan pertimbangan untuk penetapan program dan rencana kegiatan sumber daya air</span></li>
+            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pembahasan usulan rencana alokasi air dari setiap sumber air pada Wilayah Sungai Bali Penida guna perumusan bahan pertimbangan untuk penetapan rencana alokasi air</span></li>
+            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pembahasan rencana pengelolaan sistem informasi hidrologi, hidrometeorologi, dan hidrogeologi pada Wilayah Sungai Bali Penida untuk mencapai keterpaduan pengelolaan sistem informasi</span></li>
             <li class="text-gray-400"><span class="text-gray-600 text-justify">pembahasan rancangan pendayagunaan kelembagaan pengelolaan sumber daya air pada Wilayah Sungai Bali- Penida</span></li>
-            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pemberian pertimbangan kepada Menteri mengenai pelaksanaan pengelolaan sumber daya air pada Wilayah Sungai Bali-Penida</span></li>
+            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pemberian pertimbangan kepada Menteri mengenai pelaksanaan pengelolaan sumber daya air pada Wilayah Sungai Bali Penida</span></li>
           </ul>
         </div>
 
@@ -42,9 +42,9 @@
 
         <div class="py-10 lg:col-span-2 lg:col-start-1 lg:pb-16 lg:pr-8 lg:pt-6">
           <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-            <li class="text-gray-400"><span class="text-gray-600 text-justify">Konsultasi dengan pihak terkait yang diperlukan guna keterpaduan dalam pengelolaan sumber daya air pada Wilayah Sungai Bali-Penida serta tercapainya kesepahaman antarsektor, antarwilayah, dan antarpemilik kepentingan</span></li>
-            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pengintegrasian dan penyelarasankepentingan antarsektor, antarwilayah, serta antarpemilik kepentingan dalam pengelolaan sumber daya air pada Wilayah Sungai Bali-Penida</span></li>
-            <li class="text-gray-400"><span class="text-gray-600 text-justify">Kegiatan pemantauan dan evaluasi pelaksanaan program dan rencana kegiatan pengelolaan sumber daya air pada Wilayah Sungai Bali-Penida</span></li>
+            <li class="text-gray-400"><span class="text-gray-600 text-justify">Konsultasi dengan pihak terkait yang diperlukan guna keterpaduan dalam pengelolaan sumber daya air pada Wilayah Sungai Bali Penida serta tercapainya kesepahaman antarsektor, antarwilayah, dan antarpemilik kepentingan</span></li>
+            <li class="text-gray-400"><span class="text-gray-600 text-justify">Pengintegrasian dan penyelarasankepentingan antarsektor, antarwilayah, serta antarpemilik kepentingan dalam pengelolaan sumber daya air pada Wilayah Sungai Bali Penida</span></li>
+            <li class="text-gray-400"><span class="text-gray-600 text-justify">Kegiatan pemantauan dan evaluasi pelaksanaan program dan rencana kegiatan pengelolaan sumber daya air pada Wilayah Sungai Bali Penida</span></li>
           </ul>
         </div>
       </div>

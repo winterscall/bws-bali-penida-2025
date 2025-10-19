@@ -4,7 +4,7 @@
       <span class="app-brand-logo demo">
         <img src="{{ asset('assets-tw/img/logo-kom-b.png') }}" height="17" />
       </span>
-      <span class="app-brand-text demo menu-text fw-bold" style="font-size: 14pt;">BWS Bali-Penida</span>
+      <span class="app-brand-text demo menu-text fw-bold" style="font-size: 14pt;">BWS Bali Penida</span>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">

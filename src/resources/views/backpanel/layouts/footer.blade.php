@@ -7,7 +7,7 @@
         <script>
           document.write(new Date().getFullYear());
         </script>
-        , Balai Wilayah Sungai Bali-Penida.
+        , Balai Wilayah Sungai Bali Penida.
       </div>
     </div>
   </div>

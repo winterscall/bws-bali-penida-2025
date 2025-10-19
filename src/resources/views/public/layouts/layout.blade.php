@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@yield('page_title', 'Beranda') | BWS Bali Penida</title>
 
   @vite('resources/css/app.css')
   <script src="https://kit.fontawesome.com/112297eada.js" crossorigin="anonymous"></script>
@@ -41,7 +42,7 @@
             <img src="{{ asset('assets-tw/img/logo-kom-a.png') }}" class="h-10 mr-5 block lg:hidden" alt="Logo" />
           </a>
           <div class="hidden lg:flex flex-col">
-            <p class="text-lg leading-none uppercase font-bold mb-1">Balai wilayah sungai bali-penida</p>
+            <p class="text-lg leading-none uppercase font-bold mb-1">Balai wilayah sungai Bali Penida</p>
             <p class="text-base leading-none font-semibold mb-1">Direktorat Jenderal Sumber Daya Air</p>
             <p class="text-base leading-none font-semibold" style="letter-spacing: -.03em;">Kementerian Pekerjaan Umum
             </p>
@@ -316,7 +317,7 @@
               <p class="text-2xl tracking-tight leading-loose font-light text-white">Kontak Kami</p>
             </div>
             <p class="line-clamp-5 p-2 text-white">
-              REKOMTEK BWS Bali-Penida <br>
+              REKOMTEK BWS Bali Penida <br>
               Jl. Kapten Tjok Agung Tresna No. Denpasar, Bali 80235
               <br>
               <i class="fa-solid fa-phone"></i> (+62) 851-7958-9571
@@ -361,7 +362,7 @@
       class="relative isolate flex items-center gap-x-6 overflow-hidden bg-blue-900 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 w-screen">
       <div class="flex flex-wrap items-center text-center gap-x-4 gap-y-2">
         <p class="text-sm leading-6 text-white p-2">
-          <strong class="font-semibold">&copy; Copyrights 2025. Balai Wilayah Sungai Bali-Penida.</strong>
+          <strong class="font-semibold">&copy; Copyrights 2025. Balai Wilayah Sungai Bali Penida.</strong>
         </p>
       </div>
       <div class="flex flex-1 justify-end">

@@ -19,7 +19,7 @@
     <!-- Main content -->
     <div class="p-4 sm:p-0 lg:flex-auto">
       <div class="mx-auto px-4 pb-16 pt-2 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-1 lg:gap-x-8 lg:px-8 lg:pb-24">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7888.5086330853555!2d115.229796!3d-8.667347!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2408daa3c6c29%3A0xda41c15e056f1403!2sBalai%20Wilayah%20Sungai%20Bali-Penida!5e0!3m2!1sid!2sid!4v1688417793656!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7888.5086330853555!2d115.229796!3d-8.667347!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2408daa3c6c29%3A0xda41c15e056f1403!2sBalai%20Wilayah%20Sungai%20Bali Penida!5e0!3m2!1sid!2sid!4v1688417793656!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
 

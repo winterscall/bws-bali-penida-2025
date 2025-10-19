@@ -26,7 +26,7 @@
         <div class="py-10 lg:col-span-2 lg:col-start-1 lg:pb-16 lg:pr-8">
           <div class="space-y-6">
             <p class="text-base text-gray-900">
-              Berdasarkan Permen PUPR nomor 4/prt/m/2015 Tentang Kriteria dan Penetapan Wilayah Sungai, Wilayah Sungai Bali-Penida merupakan Wilayah Sungai Strategis Nasional, terdiri dari 391 DAS.
+              Berdasarkan Permen PUPR nomor 4/prt/m/2015 Tentang Kriteria dan Penetapan Wilayah Sungai, Wilayah Sungai Bali Penida merupakan Wilayah Sungai Strategis Nasional, terdiri dari 391 DAS.
             </p>
             <p class="text-base text-gray-900">
               Wilayah Administratif : Prov. Bali, terdiri dari 8 Kabupaten (Jembrana, Tabanan,Badung,Gianyar, Klungkung, Bangli, Karangasem. Buleleng) dan 1 Kota Denpasar.
