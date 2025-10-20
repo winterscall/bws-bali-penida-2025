@@ -20,7 +20,7 @@
     <!-- Struktur Organisasi -->
     <div class="mx-auto mt-6 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-1 lg:px-8">
       <div class="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg lg:block">
-        <img src="{{ asset('assets-tw/img/wilayah.png') }}" alt="BWS Banner Image" class="h-full w-full object-cover object-center">
+        <img src="{{ asset('assets-tw/img/das.jpg') }}" alt="BWS Banner Image" class="h-full w-full object-cover object-center">
       </div>
       <div class="mx-auto px-4 pb-16 pt-2 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-1 lg:gap-x-8 lg:px-8 lg:pb-24">
         <div class="py-10 lg:col-span-2 lg:col-start-1 lg:pb-16 lg:pr-8">
