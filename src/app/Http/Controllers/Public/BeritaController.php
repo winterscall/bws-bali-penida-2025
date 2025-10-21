@@ -14,7 +14,8 @@ class BeritaController extends Controller
         $beritas = News::where('news_type_id', $news_type->id)
             ->whereNotNull('published_at')
             ->orderBy('published_at', 'desc')
-            ->paginate(10);
+            ->paginate(10)
+            ->withPath(route('public.berita.index', ['slug' => $news_type->slug]));
 
         return view('public.pages.berita', compact('news_type', 'beritas'));
     }

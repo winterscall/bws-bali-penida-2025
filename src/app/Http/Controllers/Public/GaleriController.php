@@ -18,7 +18,8 @@ class GaleriController extends Controller
             })
             ->whereNotNull('published_at')
             ->orderBy('published_at', 'desc')
-            ->paginate(12);
+            ->paginate(12)
+            ->withPath(route('public.galeri.foto'));
 
         return view('public.pages.galeri-foto', compact('albums'));
     }
