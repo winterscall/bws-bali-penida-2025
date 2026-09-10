@@ -40,5 +40,6 @@ Route::prefix('berita')->name('berita.')->group(function () {
 Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 Route::get('/tkpsda', [HomeController::class, 'tkpsda'])->name('tkpsda');
 Route::get('/agenda_kepala_balai', [AgendaController::class, 'index'])->name('agenda_kepala_balai');
+Route::get('/agenda_kepala_balai_2', [AgendaController::class, 'tv'])->name('agenda_kepala_balai_2');
 
 require __DIR__ . '/web-backpanel.php';
