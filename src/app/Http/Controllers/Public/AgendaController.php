@@ -10,4 +10,9 @@ class AgendaController extends Controller
     {
         return view('public.pages.agenda');
     }
+
+    public function tv()
+    {
+        return view('public.pages.agenda-tv');
+    }
 }
